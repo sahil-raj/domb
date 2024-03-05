@@ -1,0 +1,23 @@
+{
+  "name": "domb",
+  "version": "1.0.0",
+  "description": "Simple token (not the standard erc20) contract and its tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahil-raj/domb.git"
+  },
+  "author": "https://github.com/sahil-raj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahil-raj/domb/issues"
+  },
+  "homepage": "https://github.com/sahil-raj/domb#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.21.0"
+  }
+}
