@@ -35,5 +35,22 @@ describe("domb tests" , () => {
             expect(await hardhatToken.balanceOf(owner.address)).to.equal(await hardhatToken.maxDomb() - BigInt(10));
             expect(await hardhatToken.balanceOf(add1.address)).to.equal(10);
         });
+        //total number of tokens in circulation must be equal to the maxDomb
+        it("should have token in circulation = maxDom", async () => {
+            //perform few transfers and then check the total circulation
+            await hardhatToken.transfer(owner.address, add1.address, 20);
+            await hardhatToken.transfer(add1.address, add2.address, 10);
+            //add the balances of all the three accounts
+            const myBal = await hardhatToken.balanceOf(owner.address) + await hardhatToken.balanceOf(add1.address) + await hardhatToken.balanceOf(add2.address);
+            //match the total number of token with myBal
+            expect(await hardhatToken.maxDomb()).to.equal(myBal);
+        });
+        //there shouldn't be a transfer if balance<amount transfered
+        it("should not transfer in case of insufficient balance", () => {
+            expect("transaction to revert in case of insufficient balance", async () => {
+                await hardhatToken.transfer(owner.address, add1.address, 50);
+                expect(await hardhatToken.transfer(add1.address, add2.address, 100)).to.be.revertedWith("Insufficient balance");
+            });
+        });
     });
 });
