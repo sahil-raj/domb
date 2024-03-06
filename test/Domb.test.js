@@ -26,4 +26,14 @@ describe("domb tests" , () => {
             expect(await hardhatToken.balanceOf(owner.address)).to.equal(await hardhatToken.maxDomb());
         });
     });
+
+    //transfer related tests
+    describe("transfer", async () => {
+        //transfer token from owner to add1 and check balances
+        it("should transfer(owner->add1) and have correct balances", async () => {
+            await hardhatToken.transfer(owner.address, add1.address, 10);
+            expect(await hardhatToken.balanceOf(owner.address)).to.equal(await hardhatToken.maxDomb() - BigInt(10));
+            expect(await hardhatToken.balanceOf(add1.address)).to.equal(10);
+        });
+    });
 });
