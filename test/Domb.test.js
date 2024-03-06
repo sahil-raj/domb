@@ -21,5 +21,9 @@ describe("domb tests" , () => {
         it("Should assign deploying person as owner", async () => {
             expect(await hardhatToken.owner()).to.equal(owner.address);
         });
+        //test to check wheter all the tokens are assigned to the owner
+        it("should assign all tokens to owner", async () => {
+            expect(await hardhatToken.balanceOf(owner.address)).to.equal(await hardhatToken.maxDomb());
+        });
     });
 });
