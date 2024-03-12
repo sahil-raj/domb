@@ -46,11 +46,9 @@ describe("domb tests" , () => {
             expect(await hardhatToken.maxDomb()).to.equal(myBal);
         });
         //there shouldn't be a transfer if balance<amount transfered
-        it("should not transfer in case of insufficient balance", () => {
-            expect("transaction to revert in case of insufficient balance", async () => {
-                await hardhatToken.transfer(owner.address, add1.address, 50);
-                expect(await hardhatToken.transfer(add1.address, add2.address, 100)).to.be.revertedWith("Insufficient balance");
-            });
+        it("should not transfer in case of insufficient balance", async () => {
+            await hardhatToken.transfer(owner.address, add1.address, 50);
+            await expect(hardhatToken.transfer(add1.address, add2.address, 100)).to.be.revertedWith("Insufficient balance");;
         });
     });
 });
